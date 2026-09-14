@@ -1,7 +1,7 @@
 /**
- * Authorization Middleware (สไลด์หน้า 43)
+ * Authorization Middleware
  * ตรวจสอบสิทธิ์ (Role) ของผู้ใช้หลังจากผ่าน Authentication แล้ว
- * หากไม่มีสิทธิ์ ให้ตอบกลับด้วย HTTP Status 403 Forbidden (สไลด์หน้า 25)
+ * หากไม่มีสิทธิ์ ให้ตอบกลับด้วย HTTP Status 403 Forbidden
  */
 
 export const requireAdmin = (req, res, next) => {

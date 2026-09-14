@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import {
   getMongoUsers,
   createMongoUser,
@@ -122,7 +122,7 @@ function App() {
   // =========================
   // LOAD USERS
   // =========================
-  async function loadUsers(db = activeDb) {
+  const loadUsers = useCallback(async (db = activeDb) => {
     try {
       setLoading(true);
       setError("");
@@ -139,12 +139,11 @@ function App() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [activeDb]);
 
   useEffect(() => {
-    resetForm();
-    (activeDb);
-  }, [activeDb]);
+    loadUsers();
+  }, [loadUsers]);
 
   // =========================
   // FORM HANDLERS
@@ -296,7 +295,10 @@ function App() {
             {/* Database Switcher Capsule */}
             <div className="inline-flex items-center bg-[#efe7dc] p-1 rounded-full border border-[#d8cfc2] shadow-inner">
               <button
-                onClick={() => setActiveDb("mongo")}
+                onClick={() => {
+                  setActiveDb("mongo");
+                  resetForm();
+                }}
                 className={`flex items-center gap-2 px-5 py-2 rounded-full text-xs font-semibold transition-all duration-200 ${
                   isMongo
                     ? "bg-[#453c35] text-white shadow-sm"
@@ -312,7 +314,10 @@ function App() {
               </button>
 
               <button
-                onClick={() => setActiveDb("supabase")}
+                onClick={() => {
+                  setActiveDb("supabase");
+                  resetForm();
+                }}
                 className={`flex items-center gap-2 px-5 py-2 rounded-full text-xs font-semibold transition-all duration-200 ${
                   !isMongo
                     ? "bg-[#453c35] text-white shadow-sm"

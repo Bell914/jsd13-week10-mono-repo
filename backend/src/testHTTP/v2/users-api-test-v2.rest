@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:3001/api/v2
+
+# MongoDB Users CRUD (/api/v2/users)
+
+### Read all MongoDB users
+GET {{baseUrl}}/users
+
+
+### Read single MongoDB user
+GET {{baseUrl}}/users/ใส่_MONGODB_ID_ตรงนี้
+
+
+### Create a new MongoDB user
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "username": "Neeti",
+  "email": "neeti@example.com",
+  "password": "pass1234",
+  "role": "user"
+}
+
+
+### Update a MongoDB user
+PUT {{baseUrl}}/users/ใส่_MONGODB_ID_ตรงนี้
+Content-Type: application/json
+
+{
+  "username": "Neeti Updated",
+  "email": "neeti.updated@example.com",
+  "role": "admin"
+}
+
+
+### Delete MongoDB user
+DELETE {{baseUrl}}/users/ใส่_MONGODB_ID_ตรงนี้

@@ -1,0 +1,56 @@
+@baseUrl = http://localhost:3001/api/v2/users
+
+@email = neeti2@example.com
+@password = pass123
+
+### Login success
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+
+
+### Login with Incorrect Password (400)
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "wrongpassword"
+}
+
+
+### Login with User Not Found (400)
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "nobody@example.com",
+  "password": "{{password}}"
+}
+
+
+### Login with Missing Email/Password (400)
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "{{email}}"
+}
+
+
+### Check user token (Verify Auth)
+GET {{baseUrl}}/auth
+
+
+### Logout (Clear Cookie)
+POST {{baseUrl}}/logout
+
+
+### Check user token after Logout (Should return 401 Access denied)
+GET {{baseUrl}}/auth
+
+

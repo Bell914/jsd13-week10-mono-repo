@@ -1,0 +1,37 @@
+@baseUrl = http://localhost:3001/api/v2
+
+# Supabase PostgreSQL CRUD (/api/v2/users/pg)
+
+### Read all Supabase users
+GET {{baseUrl}}/users/pg
+
+
+### Read single Supabase user
+GET {{baseUrl}}/users/pg/ใส่_UUID_ตรงนี้
+
+
+### Create a new Supabase user
+POST {{baseUrl}}/users/pg
+Content-Type: application/json
+
+{
+  "username": "NeetiPG",
+  "email": "neetipg@example.com",
+  "password": "pass1234",
+  "role": "user"
+}
+
+
+### Update a Supabase user
+PUT {{baseUrl}}/users/pg/ใส่_UUID_ตรงนี้
+Content-Type: application/json
+
+{
+  "username": "NeetiPG Updated",
+  "email": "neetipg.updated@example.com",
+  "role": "admin"
+}
+
+
+### Delete Supabase user
+DELETE {{baseUrl}}/users/pg/ใส่_UUID_ตรงนี้

@@ -2,7 +2,14 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
 
 export const authUser = async (req, res, next) => {
-  const token = req.cookies?.accessToken;
+  // รองรับทั้ง HttpOnly Cookie (Browser) และ Bearer Token Header (Postman/REST Client)
+  const authHeader = req.headers.authorization;
+  const bearerToken =
+    authHeader && authHeader.startsWith("Bearer ")
+      ? authHeader.split(" ")[1]
+      : null;
+
+  const token = req.cookies?.accessToken || bearerToken;
 
   if (!token) {
     return res.status(401).json({

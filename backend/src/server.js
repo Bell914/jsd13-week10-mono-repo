@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 
 import { routes as apiRoutes } from "./routes/index.js";
 import { router as authRoutes } from "./routes/v2/auth.routes.js";
+import { router as usersRoutes } from "./routes/v2/users.routes.js";
 import { connectDB } from "./config/db.js";
 import { connectSupabase } from "./config/supabase.js";
 
@@ -322,11 +323,10 @@ app.get("/", (req, res) => {
 app.use("/api", apiRoutes);
 app.use("/auth", authRoutes);
 app.use(authRoutes);
-
+app.use("/users", usersRoutes);
 
 
 // ERROR HANDLING
-
 app.use((err, req, res, next) => {
   console.error(err);
 
@@ -338,7 +338,6 @@ app.use((err, req, res, next) => {
 });
 
 // SERVER
-
 const PORT = 3001;
 
 async function start() {

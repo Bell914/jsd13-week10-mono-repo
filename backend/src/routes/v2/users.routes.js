@@ -26,7 +26,7 @@ router.get("/", getAllUsers);
 router.post("/", createUser);
 
 // GET /users/me (getCurrentUser)
-router.get(["/me", "/auth"], authUser, getCurrentUser);
+router.get(["/me", "/auth", "/auth/me"], authUser, getCurrentUser);
 
 // PATCH /users/me (updateCurrentUser)
 router.patch("/me", authUser, updateCurrentUser);

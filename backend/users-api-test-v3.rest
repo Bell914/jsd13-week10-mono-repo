@@ -30,3 +30,13 @@ Content-Type: application/json
 
 ### DELETE user
 DELETE {{baseUrl}}/ใส่_MongoDB_ID_ตรงนี้
+
+
+### Ask AI (RAG with Atlas Vector Search)
+POST {{baseUrl}}/ask-ai
+Content-Type: application/json
+
+{
+  "question": "Who is working as an admin or in software development?",
+  "topK": 5
+}

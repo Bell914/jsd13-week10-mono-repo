@@ -330,9 +330,9 @@ app.use("/users", usersRoutes);
 app.use((err, req, res, next) => {
   console.error(err);
 
-  return res.status(500).json({
+  return res.status(err.status || 500).json({
     success: false,
-    error: "Something went wrong on the server...",
+    error: err.name || "Something went wrong on the server...",
     message: err.message,
   });
 });

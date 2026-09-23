@@ -7,6 +7,7 @@ import {
   updateUserById,
   deleteUserById,
   createUser,
+  askAI,
 } from "../../controllers/users.controller.js";
 import { loginUser, logoutUser } from "../../controllers/auth.controller.js";
 import { authUser } from "../../middlewares/authUser.js";
@@ -24,6 +25,9 @@ router.get("/", getAllUsers);
 
 // POST /users (createUser)
 router.post("/", createUser);
+
+// POST /users/ask-ai (RAG Vector Search with Gemini)
+router.post(["/ask-ai", "/ai/ask"], askAI);
 
 // GET /users/me (getCurrentUser)
 router.get(["/me", "/auth", "/auth/me"], authUser, getCurrentUser);
